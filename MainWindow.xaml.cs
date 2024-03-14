@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,21 @@ namespace EfCore
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly DataContext _dataContext;
         public MainWindow()
         {
             InitializeComponent();
+
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("config1.json")
+                .Build();
+
+            DbContextOptions<DataContext> options = new DbContextOptionsBuilder<DataContext>()
+                .UseSqlServer(/*config.GetConnectionString("Default")*/ "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFCoreDb;Integrated Security=True;")
+                .Options;
+            _dataContext = new DataContext(options);
+
+            dataGrid.ItemsSource = _dataContext.User.ToList();
         }
     }
 }
