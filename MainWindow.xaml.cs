@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EfCore.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using System.Windows;
@@ -31,6 +32,14 @@ namespace EfCore
                 .UseSqlServer(/*config.GetConnectionString("Default")*/ "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFCoreDb;Integrated Security=True;")
                 .Options;
             _dataContext = new DataContext(options);
+
+            //_dataContext.User.Add(new User()
+            //{
+            //    Name = "Petro",
+            //    Login = "Robert Martin",
+            //    Password = "qwerty"
+            //});
+            //_dataContext.SaveChanges();
 
             dataGrid.ItemsSource = _dataContext.User.ToList();
         }
