@@ -16,5 +16,7 @@ namespace EfCore
         }
 
         public DbSet<User> User { get; set; } = default!;
+        public DbSet<City> City { get; set; } = default!;
+        public DbSet<Country> Country { get; set; } = default!;
     }
 }

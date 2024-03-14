@@ -10,5 +10,8 @@
         <DataGrid x:Name="dataGrid">
             
         </DataGrid>
+        <DataGrid x:Name="dataGrid2">
+
+        </DataGrid>
     </Grid>
 </Window>

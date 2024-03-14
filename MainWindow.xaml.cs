@@ -33,14 +33,6 @@ namespace EfCore
                 .Options;
             _dataContext = new DataContext(options);
 
-            //_dataContext.User.Add(new User()
-            //{
-            //    Name = "Petro",
-            //    Login = "Robert Martin",
-            //    Password = "qwerty"
-            //});
-            //_dataContext.SaveChanges();
-
             dataGrid.ItemsSource = _dataContext.User.ToList();
         }
     }
